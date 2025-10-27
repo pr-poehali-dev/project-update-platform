@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,6 +36,7 @@ const mockProjects: Project[] = [
 const partners = ['Яндекс', 'Сбер', 'ВТБ', 'Тинькофф', 'Skyeng', 'Ozon'];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [filters, setFilters] = useState({
@@ -312,7 +314,11 @@ const Index = () => {
                     </div>
                   </CardContent>
                   <CardFooter className="gap-3">
-                    <Button variant="outline" className="flex-1">
+                    <Button 
+                      variant="outline" 
+                      className="flex-1"
+                      onClick={() => navigate(`/project/${project.id}`)}
+                    >
                       <Icon name="Info" size={16} className="mr-2" />
                       Подробнее
                     </Button>
